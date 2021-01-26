@@ -1,22 +1,29 @@
+import dependencies.*
+
 plugins {
     id 'com.android.application'
     id 'kotlin-android'
+    id 'androidx.navigation.safeargs.kotlin'
 }
 
 android {
-    compileSdkVersion 30
-    buildToolsVersion "30.0.0"
+    compileSdkVersion Config.compiledSDKVersion
+    buildToolsVersion Config.buildTools
 
     defaultConfig {
-        applicationId "com.apelgigit.miniappsstockbit"
-        minSdkVersion 21
-        targetSdkVersion 30
-        versionCode 1
-        versionName "1.0"
-
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        applicationId Config.appId
+        minSdkVersion Config.minSDK
+        targetSdkVersion Config.targetSDK
+        versionCode Config.versionCode
+        versionName Config.versionName
+        multiDexEnabled true
     }
 
+    buildFeatures {
+        viewBinding {
+            enabled = true
+        }
+    }
     buildTypes {
         release {
             minifyEnabled false
@@ -33,13 +40,16 @@ android {
 }
 
 dependencies {
+    implementation Libs.Kotlin.stdLib
+    implementation Libs.Kotlin.core
+    implementation Libs.Android.appcompat
+    implementation Libs.Android.materialDesign
+    implementation Libs.Android.constrainLayout
+    implementation Libs.Kotlin.coroutine
+    implementation Libs.Android.multidex
 
-    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
-    implementation 'androidx.core:core-ktx:1.3.2'
-    implementation 'androidx.appcompat:appcompat:1.2.0'
-    implementation 'com.google.android.material:material:1.2.1'
-    implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
-    testImplementation 'junit:junit:4.13.1'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.2'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
+    implementation project(Modules.navigation)
+    implementation project(Modules.auth)
+    implementation project(Modules.commons)
+
 }

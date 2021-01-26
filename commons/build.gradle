@@ -1,0 +1,18 @@
+import dependencies.Libs
+import dependencies.Modules
+
+apply from: "$rootDir/commons.gradle"
+
+dependencies {
+    implementation Libs.Kotlin.stdLib
+    implementation Libs.Kotlin.core
+    implementation Libs.Android.appcompat
+    implementation Libs.Android.materialDesign
+    implementation Libs.Android.constrainLayout
+    implementation project(Modules.navigation)
+
+    api Libs.Koin.koinAndroid
+    api Libs.Koin.koinScope
+    api Libs.Koin.koinExt
+    api Libs.Koin.koinVM
+}

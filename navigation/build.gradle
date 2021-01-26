@@ -1,0 +1,10 @@
+import dependencies.*
+
+apply plugin: 'com.android.library'
+apply from: "$rootDir/commons.gradle"
+apply plugin: "androidx.navigation.safeargs.kotlin"
+
+dependencies {
+    api Libs.Android.navigationKtx
+    api Libs.Android.navigationFrag
+}

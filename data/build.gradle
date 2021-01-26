@@ -1,0 +1,7 @@
+import dependencies.*
+
+apply from: "$rootDir/commons.gradle"
+
+
+dependencies {
+}

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="horizontal_margin_medium">16dp</dimen>
+    <dimen name="vertical_margin_medium">16dp</dimen>
+    <dimen name="dimen_0">0dp</dimen>
+    <dimen name="action_bar_height">56dp</dimen>
+</resources>

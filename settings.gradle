@@ -1,2 +1,7 @@
+include ':commons'
+include ':navigation'
+include ':domain'
+include ':data'
+include ':features:login'
 include ':app'
 rootProject.name = "MiniAppsStockbit"

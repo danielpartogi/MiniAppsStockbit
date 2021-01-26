@@ -1,6 +1,7 @@
 package com.apelgigit.login
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -23,6 +24,8 @@ class LoginFragment: BaseFragment<LoginViewModel>(LoginViewModel::class) {
     }
 
     override fun onCreated(view: View) {
-
+        observeValue(viewModel.foo){
+           Log.d("asd", it.toString())
+        }
     }
 }

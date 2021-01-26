@@ -13,7 +13,7 @@ const val CRYPTO_TOP_DATA = "data/top/totaltoptiervolfull"
 interface CryptoService {
 
     @GET(CRYPTO_TOP_DATA)
-    fun getCryptoData(
+    suspend fun getCryptoData(
         @Query(QUERY_PARAM_LIMIT) limit: Int,
         @Query(QUERY_PARAM_PAGE) pageNum: Int,
         @Query(QUERY_PARAM_TSYM) tsym: String

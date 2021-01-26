@@ -8,9 +8,9 @@ import com.apelgigit.login.di.featureAuthModule
 import org.koin.core.module.Module
 
 val appComponent: List<Module> = listOf(
+    repositoryModule,
+    moduleUseCase,
     featureAuthModule,
     commonModules,
-    remoteModule("https://min-api.cryptocompare.com/"),
-    repositoryModule,
-    moduleUseCase
+    remoteModule("https://min-api.cryptocompare.com/")
 )

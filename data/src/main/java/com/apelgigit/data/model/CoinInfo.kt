@@ -10,7 +10,7 @@ data class CoinInfo(
     @SerializedName("BlockReward")
     val blockReward: Double = 0.0,
     @SerializedName("BlockTime")
-    val blockTime: Int = 0,
+    val blockTime: Double = 0.0,
     @SerializedName("DocumentType")
     val documentType: String = "",
     @SerializedName("FullName")

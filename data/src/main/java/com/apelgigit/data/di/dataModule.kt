@@ -64,5 +64,5 @@ fun remoteModule(baseUrl: String) = module {
 }
 
 val repositoryModule = module {
-    factory { CryptoRepositoryImpl(get())}
+    factory { CryptoRepositoryImpl(get()) as CryptoRepository}
 }

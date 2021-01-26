@@ -11,6 +11,7 @@ object Versions {
     const val koin = "2.0.1"
     const val multidex = "2.0.1"
     const val navigation = "2.3.2"
+    const val lifecycle = "2.2.0"
 
     const val junit = "4.13.1"
     const val junitExt = "1.1.2"
@@ -20,12 +21,17 @@ object Versions {
     const val assertJ = "3.2.0"
     const val coreTest = "2.1.0"
 
+    const val gson = "2.8.5"
+    const val okHttp = "3.12.1"
+    const val retrofit = "2.7.1"
 }
 
 object Modules {
     const val auth = ":features:login"
     const val navigation = ":navigation"
     const val commons = ":commons"
+    const val data = ":data"
+    const val domain = ":domain"
 }
 
 object Config {
@@ -62,10 +68,22 @@ object Libs {
         const val constrainLayout = "androidx.constraintlayout:constraintlayout:${Versions.constrainLayout}"
         const val multidex = "androidx.multidex:multidex:${Versions.multidex}"
 
+        // LIFECYCLE
+        const val livedata = "androidx.lifecycle:lifecycle-livedata-ktx:${Versions.lifecycle}"
+        const val viewmodel = "androidx.lifecycle:lifecycle-viewmodel-ktx:${Versions.lifecycle}"
+        const val extension = "androidx.lifecycle:lifecycle-extensions:${Versions.lifecycle}"
+
         // NAVIGATION
         const val navigationFrag = "androidx.navigation:navigation-fragment-ktx:${Versions.navigation}"
         const val navigationKtx = "androidx.navigation:navigation-ui-ktx:${Versions.navigation}"
         const val navigationArgs =  "androidx.navigation:navigation-safe-args-gradle-plugin:${Versions.navigation}"
+    }
+
+    object Network {
+        const val gson = "com.google.code.gson:gson:${Versions.gson}"
+        const val retrofit = "com.squareup.retrofit2:retrofit:${Versions.retrofit}"
+        const val retrofitGsonConverter = "com.squareup.retrofit2:converter-gson:${Versions.retrofit}"
+        const val httpLoggingInterceptor = "com.squareup.okhttp3:logging-interceptor:${Versions.okHttp}"
     }
 
     object UnitTest {

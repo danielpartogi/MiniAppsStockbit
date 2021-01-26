@@ -51,5 +51,7 @@ dependencies {
     implementation project(Modules.navigation)
     implementation project(Modules.auth)
     implementation project(Modules.commons)
+    implementation project(Modules.data)
+    implementation project(Modules.domain)
 
 }

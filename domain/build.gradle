@@ -4,4 +4,6 @@ apply from: "$rootDir/commons.gradle"
 
 
 dependencies {
+    implementation project(Modules.commons)
+    implementation project(Modules.data)
 }

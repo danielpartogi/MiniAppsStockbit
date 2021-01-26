@@ -43,6 +43,9 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
     implementation Libs.Kotlin.stdLib
+    implementation Libs.Android.livedata
+    implementation Libs.Android.viewmodel
+    implementation Libs.Android.extension
 
     testImplementation Libs.UnitTest.koinTest
     testImplementation Libs.UnitTest.junit

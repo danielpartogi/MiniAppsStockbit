@@ -4,4 +4,11 @@ apply from: "$rootDir/commons.gradle"
 
 
 dependencies {
+
+    implementation Libs.Network.gson
+    implementation Libs.Network.retrofit
+    implementation Libs.Network.retrofitGsonConverter
+    implementation Libs.Network.httpLoggingInterceptor
+
+    implementation project(Modules.commons)
 }

@@ -4,10 +4,8 @@ import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
-import com.apelgigit.common_ui.R
+import com.apelgigit.commons.R
 import com.apelgigit.commons.ConnectionLiveData
-import com.apelgigit.commons.isConnected
 import com.google.android.material.snackbar.Snackbar
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import kotlin.reflect.KClass
@@ -34,20 +32,21 @@ abstract class BaseFragment<VM : BaseViewModel>(clazz: KClass<VM>) : Fragment() 
     }
 
     private fun observeConnectionLiveData() {
-        connectionLiveData.observe(this.viewLifecycleOwner, Observer {
+        connectionLiveData.observe(this.viewLifecycleOwner, {
             viewModel.isNetworkAvailable.value = it
         })
-        viewModel.isNetworkAvailable.value = activity?.isConnected
+        viewModel.isNetworkAvailable.observe(this.viewLifecycleOwner, {
+            if (!it) showSnackbar(getString(R.string.error_network_not_available), Snackbar.LENGTH_LONG)
+        })
     }
 
 
     private fun observeVm() {
 
-        viewModel.errorEvent.observe(this.viewLifecycleOwner, Observer { errorEvent ->
+        viewModel.errorEvent.observe(this.viewLifecycleOwner, { errorEvent ->
             errorEvent.getContentIfNotHandled()?.let {
                 when (viewModel.errorType) {
                     ErrorType.ALERT_DIALOG -> this.showErrorDialog(
-                        "Error",
                         it.message ?: "Unexpected Error"
                     )
                     ErrorType.SNACKBAR -> this.setupSnackBar(it.message)
@@ -57,9 +56,9 @@ abstract class BaseFragment<VM : BaseViewModel>(clazz: KClass<VM>) : Fragment() 
 
     }
 
-    private fun showErrorDialog(title: String, message: String) {
+    private fun showErrorDialog(message: String) {
         val builder = AlertDialog.Builder(requireContext())
-            .setTitle(title)
+            .setTitle(getString(R.string.error))
             .setMessage(message)
             .setCancelable(true)
             .setPositiveButton(

@@ -1,4 +1,7 @@
 <resources>
     <string name="app_name">common-ui</string>
     <string name="yes">Ya</string>
+    <string name="error">Error</string>
+    <string name="error_network_not_available">Tidak ada koneksi internet</string>
+    <string name="network_available">Terhubung ke internet</string>
 </resources>

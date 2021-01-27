@@ -4,5 +4,5 @@ import com.google.gson.annotations.SerializedName
 
 data class DisplayCrypto(
     @SerializedName("IDR")
-    val displayDetail: DisplayCryptoDetail
+    val displayDetail: DisplayCryptoDetail = DisplayCryptoDetail()
 )

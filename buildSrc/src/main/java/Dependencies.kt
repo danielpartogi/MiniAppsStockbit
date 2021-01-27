@@ -12,6 +12,7 @@ object Versions {
     const val multidex = "2.0.1"
     const val navigation = "2.3.2"
     const val lifecycle = "2.2.0"
+    const val room = "2.2.6"
 
     const val junit = "4.13.1"
     const val junitExt = "1.1.2"
@@ -24,6 +25,7 @@ object Versions {
     const val gson = "2.8.5"
     const val okHttp = "3.12.1"
     const val retrofit = "2.7.1"
+    const val scarlet = "0.1.10"
 }
 
 object Modules {
@@ -32,6 +34,7 @@ object Modules {
     const val commons = ":commons"
     const val data = ":data"
     const val domain = ":domain"
+    const val home = ":features:home"
 }
 
 object Config {
@@ -77,6 +80,11 @@ object Libs {
         const val navigationFrag = "androidx.navigation:navigation-fragment-ktx:${Versions.navigation}"
         const val navigationKtx = "androidx.navigation:navigation-ui-ktx:${Versions.navigation}"
         const val navigationArgs =  "androidx.navigation:navigation-safe-args-gradle-plugin:${Versions.navigation}"
+
+        // ROOM
+        const val roomRuntime = "androidx.room:room-runtime:${Versions.room}"
+        const val roomCompiler =  "androidx.room:room-compiler:${Versions.room}"
+        const val roomKtx = "androidx.room:room-ktx:${Versions.room}"
     }
 
     object Network {
@@ -84,6 +92,13 @@ object Libs {
         const val retrofit = "com.squareup.retrofit2:retrofit:${Versions.retrofit}"
         const val retrofitGsonConverter = "com.squareup.retrofit2:converter-gson:${Versions.retrofit}"
         const val httpLoggingInterceptor = "com.squareup.okhttp3:logging-interceptor:${Versions.okHttp}"
+
+        const val scarlet = "com.tinder.scarlet:scarlet:${Versions.scarlet}"
+        const val scarletMessageAdapter = "com.tinder.scarlet:message-adapter-gson:${Versions.scarlet}"
+        const val scarletLifecycle = "com.tinder.scarlet:lifecycle-android:${Versions.scarlet}"
+        const val scarletWebSocket = "com.tinder.scarlet:websocket-okhttp:${Versions.scarlet}"
+
+        const val scarletStreamAdapter = "com.tinder.scarlet:stream-adapter-coroutines:${Versions.scarlet}"
     }
 
     object UnitTest {

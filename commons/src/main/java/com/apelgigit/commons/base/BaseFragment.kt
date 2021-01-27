@@ -4,6 +4,8 @@ import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
+import androidx.navigation.NavController
+import androidx.navigation.fragment.findNavController
 import com.apelgigit.commons.R
 import com.apelgigit.commons.ConnectionLiveData
 import com.google.android.material.snackbar.Snackbar
@@ -13,6 +15,7 @@ import kotlin.reflect.KClass
 abstract class BaseFragment<VM : BaseViewModel>(clazz: KClass<VM>) : Fragment() {
 
     protected lateinit var connectionLiveData: ConnectionLiveData
+    protected lateinit var navigationController: NavController
 
     /**
      * The viewModel acts upon the model and the view.
@@ -26,6 +29,7 @@ abstract class BaseFragment<VM : BaseViewModel>(clazz: KClass<VM>) : Fragment() 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         connectionLiveData = ConnectionLiveData(requireContext())
+        navigationController = findNavController()
         observeConnectionLiveData()
         observeVm()
         onCreated(view)
@@ -39,7 +43,6 @@ abstract class BaseFragment<VM : BaseViewModel>(clazz: KClass<VM>) : Fragment() 
             if (!it) showSnackbar(getString(R.string.error_network_not_available), Snackbar.LENGTH_LONG)
         })
     }
-
 
     private fun observeVm() {
 

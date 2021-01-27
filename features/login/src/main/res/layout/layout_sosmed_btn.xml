@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/cl_google"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/shape_corner_gray_4dp"
+        android:paddingHorizontal="@dimen/horizontal_margin_small"
+        android:paddingVertical="@dimen/vertical_margin_small"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/iv_google"
+            android:layout_width="@dimen/image_width_small"
+            android:layout_height="@dimen/image_height_small"
+            android:contentDescription="@string/google_icon"
+            android:src="@drawable/ic_google"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_google"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/vertical_margin_medium"
+            android:text="@string/sign_in_with_google"
+            app:layout_constraintBottom_toBottomOf="@+id/iv_google"
+            app:layout_constraintStart_toEndOf="@+id/iv_google"
+            app:layout_constraintTop_toTopOf="@+id/iv_google" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/cl_facebook"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/vertical_margin_small"
+        android:background="@drawable/shape_corner_gray_4dp"
+        android:paddingHorizontal="@dimen/horizontal_margin_small"
+        android:paddingVertical="@dimen/vertical_margin_small"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/iv_facebook"
+            android:layout_width="@dimen/image_width_small"
+            android:layout_height="@dimen/image_height_small"
+            android:contentDescription="@string/facebook_icon"
+            android:src="@drawable/ic_facebook"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_facebook"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:text="@string/login_with_facebook"
+            app:layout_constraintBottom_toBottomOf="@+id/iv_facebook"
+            app:layout_constraintStart_toEndOf="@+id/iv_facebook"
+            app:layout_constraintTop_toTopOf="@+id/iv_facebook" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</LinearLayout>

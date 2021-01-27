@@ -28,7 +28,7 @@ data class CoinInfo(
     @SerializedName("ProofType")
     val proofType: String = "",
     @SerializedName("Rating")
-    val rating: Rating,
+    val rating: Rating = Rating(),
     @SerializedName("Type")
     val type: Int = 0,
     @SerializedName("Url")

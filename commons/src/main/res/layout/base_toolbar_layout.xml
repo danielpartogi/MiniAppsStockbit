@@ -1,31 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
+
+<com.google.android.material.appbar.AppBarLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/appBarLayout"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    app:elevation="@dimen/dimen_0"
+    app:layout_constraintBottom_toBottomOf="parent"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toTopOf="parent">
 
-    <com.google.android.material.appbar.AppBarLayout
-        android:id="@+id/appBarLayout"
+    <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/toolbar"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:elevation="@dimen/dimen_0"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        android:layout_height="@dimen/action_bar_height"
+        android:background="@color/white"
+        app:contentInsetStart="@dimen/dimen_0"
+        app:contentInsetStartWithNavigation="@dimen/dimen_0"
+        app:titleTextColor="@color/black">
 
-        <androidx.appcompat.widget.Toolbar
-            android:id="@+id/toolbar_login"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/action_bar_height"
-            android:background="@color/white"
-            app:contentInsetStart="@dimen/dimen_0"
-            app:contentInsetStartWithNavigation="@dimen/dimen_0"
-            app:titleTextColor="@color/black">
 
-        </androidx.appcompat.widget.Toolbar>
+        <ImageButton
+            android:id="@+id/back_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/horizontal_margin_medium"
+            android:background="@null"
+            android:contentDescription="@string/back_button"
+            android:drawablePadding="0dp"
+            android:gravity="center_vertical"
+            android:src="@drawable/ic_back_arrow" />
 
-    </com.google.android.material.appbar.AppBarLayout>
+    </com.google.android.material.appbar.MaterialToolbar>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</com.google.android.material.appbar.AppBarLayout>

@@ -2,6 +2,10 @@
 <resources>
     <dimen name="horizontal_margin_medium">16dp</dimen>
     <dimen name="vertical_margin_medium">16dp</dimen>
+    <dimen name="horizontal_margin_small">8dp</dimen>
+    <dimen name="vertical_margin_small">8dp</dimen>
     <dimen name="dimen_0">0dp</dimen>
+    <dimen name="image_width_small">32dp</dimen>
+    <dimen name="image_height_small">32dp</dimen>
     <dimen name="action_bar_height">56dp</dimen>
 </resources>

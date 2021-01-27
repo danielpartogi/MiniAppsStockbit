@@ -2,6 +2,7 @@ package com.apelgigit.login
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.switchMap
 import androidx.lifecycle.viewModelScope
 import com.apelgigit.commons.base.BaseViewModel
 import com.apelgigit.commons.ext.Resource
@@ -13,7 +14,6 @@ import kotlinx.coroutines.launch
 
 class LoginViewModel(val dispatcher: DispatcherProvider, val useCase: CryptoUseCase): BaseViewModel(dispatcher) {
 
-    private val _foo = MutableLiveData<Resource<List<Crypto>>>()
-    val foo: LiveData<Resource<List<Crypto>>> get() = useCase.getCryptoList(CryptoRequest(1,10))
+
 
 }

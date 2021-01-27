@@ -4,4 +4,6 @@
     <string name="error">Error</string>
     <string name="error_network_not_available">Tidak ada koneksi internet</string>
     <string name="network_available">Terhubung ke internet</string>
+    <string name="back_button">back button</string>
+    <string name="price_change">%1$s (%2$s%%)</string>
 </resources>

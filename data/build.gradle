@@ -10,5 +10,16 @@ dependencies {
     implementation Libs.Network.retrofitGsonConverter
     implementation Libs.Network.httpLoggingInterceptor
 
+    implementation Libs.Network.scarlet
+    implementation Libs.Network.scarletLifecycle
+    implementation Libs.Network.scarletMessageAdapter
+    implementation Libs.Network.scarletWebSocket
+    implementation Libs.Network.scarletStreamAdapter
+
+    implementation Libs.Android.roomRuntime
+    implementation Libs.Android.roomKtx
+    kapt Libs.Android.roomCompiler
+
+
     implementation project(Modules.commons)
 }

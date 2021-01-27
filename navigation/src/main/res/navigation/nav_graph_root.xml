@@ -4,7 +4,7 @@
     android:id="@+id/nav_graph_root"
     app:startDestination="@id/loginFragment">
 
-    <fragment android:name="com.apelgigit.login.LoginFragment"
+    <fragment android:name="com.apelgigit.home.HomeFragment"
         android:label="fragment_splash"
         android:id="@+id/loginFragment">
 

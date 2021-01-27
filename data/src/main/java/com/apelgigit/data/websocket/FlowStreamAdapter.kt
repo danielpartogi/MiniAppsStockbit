@@ -1,5 +1,6 @@
 package com.apelgigit.data.websocket
 
+import android.util.Log
 import com.tinder.scarlet.Stream
 import com.tinder.scarlet.StreamAdapter
 import com.tinder.scarlet.utils.getRawType

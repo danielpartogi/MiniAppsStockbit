@@ -19,4 +19,8 @@ class CryptoUseCase(private val repository: CryptoRepository) {
     fun getWSCryptoData(subscribe: Subscribe): Flow<CryptoWSResponse> {
         return repository.getWSCrypto(subscribe)
     }
+
+    fun getAllCryptoSubs() : Flow<List<CryptoWSResponse>> {
+        return repository.getAllSubsCrypto()
+    }
 }

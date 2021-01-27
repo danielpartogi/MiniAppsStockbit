@@ -17,7 +17,8 @@ class HomeViewModel(dispatcherProvider: DispatcherProvider,
                     private val useCase: CryptoUseCase
 ): BaseViewModel(dispatcherProvider) {
 
+    val foo = useCase.getAllCryptoSubs().asLiveData()
 
-    val foo = useCase.getWSCryptoData(Subscribe("SubAdd", listOf("21~BTC"))).asLiveData()
+    val test = useCase.getWSCryptoData(Subscribe("SubAdd", listOf("21~BTC"))).asLiveData()
 
 }

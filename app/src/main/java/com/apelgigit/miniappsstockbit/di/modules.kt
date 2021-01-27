@@ -1,6 +1,7 @@
 package com.apelgigit.miniappsstockbit.di
 
 import com.apelgigit.commons.di.commonModules
+import com.apelgigit.data.di.localModule
 import com.apelgigit.data.di.remoteModule
 import com.apelgigit.data.di.repositoryModule
 import com.apelgigit.data.di.webSocketModule
@@ -12,6 +13,7 @@ import org.koin.core.module.Module
 
 @ExperimentalCoroutinesApi
 val appComponent: List<Module> = listOf(
+    localModule,
     repositoryModule,
     moduleUseCase,
     featureAuthModule,

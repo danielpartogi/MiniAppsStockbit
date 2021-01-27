@@ -1,6 +1,8 @@
 package com.apelgigit.data.di
 
+import androidx.room.Room
 import com.apelgigit.commons.constants.APIConstants.TIMEOUT
+import com.apelgigit.data.locale.AppDatabase
 import com.apelgigit.data.remote.services.CryptoService
 import com.apelgigit.data.repository.CryptoRepository
 import com.apelgigit.data.repository.CryptoRepositoryImpl
@@ -9,7 +11,6 @@ import com.apelgigit.data.websocket.FlowStreamAdapter
 import com.apelgigit.data.websocket.services.CryptoWSService
 import com.google.gson.GsonBuilder
 import com.tinder.scarlet.Scarlet
-import com.tinder.scarlet.WebSocket.Factory
 import com.tinder.scarlet.messageadapter.gson.GsonMessageAdapter
 import com.tinder.scarlet.websocket.okhttp.newWebSocketFactory
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -17,7 +18,6 @@ import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import org.koin.core.qualifier.named
-import org.koin.dsl.bind
 import org.koin.dsl.module
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -89,5 +89,15 @@ fun createOkHttpClient(interceptor: ApiKeyInterceptor): OkHttpClient = OkHttpCli
     .build()
 
 val repositoryModule = module {
-    factory { CryptoRepositoryImpl(get(), get()) as CryptoRepository}
+    factory { CryptoRepositoryImpl(get(), get(), get()) as CryptoRepository }
+}
+
+val localModule = module {
+    single {
+        Room.databaseBuilder(get(), AppDatabase::class.java, "MiniAppsCrypto.db")
+            .fallbackToDestructiveMigration().build()
+    }
+
+    single { get<AppDatabase>().subsCryptoDao() }
+
 }

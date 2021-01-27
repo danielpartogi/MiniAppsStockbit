@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.apelgigit.adapter.CryptoListAdapter
+import com.apelgigit.adapter.CryptoWatchListAdapter
 import com.apelgigit.commons.base.BaseFragment
 import com.apelgigit.commons.ext.observeValue
 import com.apelgigit.home.databinding.FragmentHomeBinding
@@ -16,7 +17,7 @@ import com.apelgigit.home.databinding.FragmentHomeBinding
 class HomeFragment: BaseFragment<HomeViewModel>(HomeViewModel::class) {
 
     private lateinit var binding: FragmentHomeBinding
-    private lateinit var adapter: CryptoListAdapter
+    private lateinit var adapter: CryptoWatchListAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -31,7 +32,11 @@ class HomeFragment: BaseFragment<HomeViewModel>(HomeViewModel::class) {
 
         observeValue(viewModel.foo){
 
-            Log.d("ws", it.toString())
+           adapter.submitList(it)
+        }
+
+        observeValue(viewModel.test){
+            Log.d("wssss", it.toString())
         }
 
         binding.rvWatchList.addItemDecoration(
@@ -40,9 +45,10 @@ class HomeFragment: BaseFragment<HomeViewModel>(HomeViewModel::class) {
                 DividerItemDecoration.VERTICAL
             )
         )
-        adapter = CryptoListAdapter()
+        adapter = CryptoWatchListAdapter()
 
         binding.rvWatchList.adapter = adapter
+        binding.rvWatchList.itemAnimator = null
     }
 
 

@@ -11,14 +11,15 @@ import com.apelgigit.adapter.CryptoListAdapter
 import com.apelgigit.commons.EndlessRecyclerOnScrollListener
 import com.apelgigit.commons.base.BaseFragment
 import com.apelgigit.commons.base.ErrorType
-import com.apelgigit.commons.ext.RequestStatus
-import com.apelgigit.commons.ext.Resource
-import com.apelgigit.commons.ext.observeValue
+import com.apelgigit.commons.utils.RequestStatus
+import com.apelgigit.commons.utils.Resource
+import com.apelgigit.commons.utils.observeValue
 import com.apelgigit.data.model.Crypto
 import com.apelgigit.home.databinding.FragmentWatchListBinding
 import com.apelgigit.listener.CryptoListener
 
-class WatchListFragment: BaseFragment<WatchListViewModel>(WatchListViewModel::class) {
+class WatchListFragment(val delegate: HomeFragmentDelegate) :
+    BaseFragment<WatchListViewModel>(WatchListViewModel::class) {
 
     private lateinit var binding: FragmentWatchListBinding
     private lateinit var adapter: CryptoListAdapter
@@ -33,7 +34,7 @@ class WatchListFragment: BaseFragment<WatchListViewModel>(WatchListViewModel::cl
         }
     }
 
-        override fun onCreateView(
+    override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -72,17 +73,17 @@ class WatchListFragment: BaseFragment<WatchListViewModel>(WatchListViewModel::cl
         observe()
     }
 
-    private fun observe(){
-        with(viewModel){
-            observeValue(cryptoDataList){
+    private fun observe() {
+        with(viewModel) {
+            observeValue(cryptoDataList) {
                 setCryptoData(it)
             }
         }
     }
 
-    private fun setCryptoData(data: Resource<List<Crypto>>){
+    private fun setCryptoData(data: Resource<List<Crypto>>) {
 
-        when(data.requestStatus){
+        when (data.requestStatus) {
             RequestStatus.EMPTY -> {
                 binding.swrWatchList.isRefreshing = false
             }
@@ -102,7 +103,12 @@ class WatchListFragment: BaseFragment<WatchListViewModel>(WatchListViewModel::cl
         }
     }
 
-    private fun refresh(){
+    override fun onResume() {
+        super.onResume()
+        delegate.updateToolbarTitle(getString(R.string.watchlist))
+    }
+
+    private fun refresh() {
         binding.swrWatchList.isRefreshing = true
         viewModel.fetchData(0)
         scrollListener.resetState()
@@ -112,14 +118,14 @@ class WatchListFragment: BaseFragment<WatchListViewModel>(WatchListViewModel::cl
 
     private fun showAlertAddCrypto(symbol: String) {
         val dialog = AlertDialog.Builder(requireContext())
-            .setTitle("Watch Crypto Volume")
-            .setMessage("Apakah anda yakin untuk stream volume $symbol?")
-            .setPositiveButton("OK") { _, _ ->
-            viewModel.setWatchList(symbol)
-        }
-        .setNegativeButton("Cancel") { dialog, _ ->
-            dialog.dismiss()
-        }
+            .setTitle(getString(R.string.watch_crypto_volume))
+            .setMessage(getString(R.string.question_add_volume, symbol))
+            .setPositiveButton(R.string.OK) { _, _ ->
+                viewModel.setWatchList(symbol)
+            }
+            .setNegativeButton(R.string.Cancel) { dialog, _ ->
+                dialog.dismiss()
+            }
             .create()
 
         dialog.show()

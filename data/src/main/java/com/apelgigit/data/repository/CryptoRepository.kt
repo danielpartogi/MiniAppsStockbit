@@ -1,8 +1,8 @@
 package com.apelgigit.data.repository
 
 import android.util.Log
-import com.apelgigit.commons.ext.RequestStatus
-import com.apelgigit.commons.ext.Resource
+import com.apelgigit.commons.utils.RequestStatus
+import com.apelgigit.commons.utils.Resource
 import com.apelgigit.data.locale.dao.SubsCryptoDao
 import com.apelgigit.data.model.Crypto
 import com.apelgigit.data.model.request.CryptoRequest
@@ -12,7 +12,6 @@ import com.apelgigit.data.websocket.response.CryptoWSResponse
 import com.apelgigit.data.websocket.services.CryptoWSService
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
-import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.flow
@@ -53,7 +52,7 @@ class CryptoRepositoryImpl(
             ws.observeResponse().collect { response ->
                 withContext(Dispatchers.IO) {
                     if (response.symbol.isNotEmpty())
-                        dao.insert(response)
+                        dao.update(response)
                 }
                 emit(response)
             }

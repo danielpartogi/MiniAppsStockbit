@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/nav_graph_login"
+    app:startDestination="@id/loginFragment">
+
+    <fragment android:name="com.apelgigit.login.LoginFragment"
+        android:label="fragment_login"
+        android:id="@+id/loginFragment">
+
+        <action android:id="@+id/action_login_fragment_to_crypto_list"
+            app:destination="@id/nav_graph_crypto_watch_list"
+            app:enterAnim="@anim/fragment_open_enter"
+            app:popExitAnim="@anim/fragment_close_exit">
+        </action>
+    </fragment>
+
+    <include app:graph="@navigation/nav_graph_crypto_watch_list"/>
+
+</navigation>

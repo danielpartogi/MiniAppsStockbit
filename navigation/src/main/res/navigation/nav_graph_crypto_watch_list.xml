@@ -1,7 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/nav_graph_crypto_watch_list">
+    android:id="@+id/nav_graph_crypto_watch_list"
+    app:startDestination="@id/homeFragment"
+    >
+
+    <fragment android:name="com.apelgigit.home.HomeFragment"
+        android:label="fragment_home"
+        android:id="@+id/homeFragment">
+
+        <action android:id="@+id/action_home_fragment_to_login"
+            app:destination="@id/nav_graph_root"
+            app:enterAnim="@anim/fragment_open_enter"
+            app:popExitAnim="@anim/fragment_close_exit"
+            app:popUpTo="@id/homeFragment"
+            app:popUpToInclusive="true"
+            >
+        </action>
+    </fragment>
 
 
 </navigation>

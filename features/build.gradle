@@ -6,6 +6,7 @@ apply from: "$rootDir/commons.gradle"
 dependencies {
     implementation Libs.Kotlin.stdLib
     implementation Libs.Kotlin.core
+    implementation Libs.Kotlin.coroutine
     implementation Libs.Android.appcompat
     implementation Libs.Android.materialDesign
     implementation Libs.Android.swipeRefresh

@@ -1,16 +1,19 @@
 package com.apelgigit.commons.base
 
+import android.app.Activity
 import android.os.Bundle
 import android.view.View
+import android.view.inputmethod.InputMethodManager
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
-import com.apelgigit.commons.R
 import com.apelgigit.commons.ConnectionLiveData
+import com.apelgigit.commons.R
 import com.google.android.material.snackbar.Snackbar
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import kotlin.reflect.KClass
+
 
 abstract class BaseFragment<VM : BaseViewModel>(clazz: KClass<VM>) : Fragment() {
 
@@ -42,7 +45,10 @@ abstract class BaseFragment<VM : BaseViewModel>(clazz: KClass<VM>) : Fragment() 
         })
         viewModel.isNetworkAvailable.observe(this.viewLifecycleOwner, {
             isNetworkAvailable = it
-            if (!it) showSnackbar(getString(R.string.error_network_not_available), Snackbar.LENGTH_LONG)
+            if (!it) showSnackbar(
+                getString(R.string.error_network_not_available),
+                Snackbar.LENGTH_LONG
+            )
         })
     }
 
@@ -59,6 +65,18 @@ abstract class BaseFragment<VM : BaseViewModel>(clazz: KClass<VM>) : Fragment() 
             }
         })
 
+    }
+
+    open fun hideKeyboard(activity: Activity) {
+        val imm: InputMethodManager =
+            activity.getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
+        //Find the currently focused view, so we can grab the correct window token from it.
+        var view = activity.currentFocus
+        //If no view currently has focus, create a new one, just so we can grab a window token from it
+        if (view == null) {
+            view = View(activity)
+        }
+        imm.hideSoftInputFromWindow(view.windowToken, 0)
     }
 
     private fun showErrorDialog(message: String) {

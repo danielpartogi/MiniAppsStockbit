@@ -1,4 +1,4 @@
-package com.apelgigit.commons.ext
+package com.apelgigit.commons.utils
 
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.LiveData

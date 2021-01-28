@@ -1,4 +1,4 @@
-package com.apelgigit.commons.thread
+package com.apelgigit.commons.utils
 
 import androidx.annotation.VisibleForTesting
 import kotlinx.coroutines.CoroutineDispatcher

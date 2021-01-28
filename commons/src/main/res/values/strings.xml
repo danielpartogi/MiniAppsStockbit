@@ -6,4 +6,12 @@
     <string name="network_available">Terhubung ke internet</string>
     <string name="back_button">back button</string>
     <string name="price_change">%1$s (%2$s%%)</string>
+    <string name="question_add_volume">Apakah anda yakin untuk stream volume %1$s?</string>
+    <string name="question_delete_volume">Apakah anda yakin untuk menghapus volume %1$s?</string>
+    <string name="watch_crypto_volume">Watch Crypto Volume</string>
+    <string name="OK">OK</string>
+    <string name="Cancel">Cancel</string>
+    <string name="title_enter">Masuk</string>
+    <string name="email_not_valid">Username atau Email Tidak Valid</string>
+    <string name="password_not_valid">Password Harus lebih dari %1$d</string>
 </resources>

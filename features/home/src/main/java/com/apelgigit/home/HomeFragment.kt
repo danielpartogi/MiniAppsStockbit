@@ -3,22 +3,28 @@ package com.apelgigit.home
 import android.os.Bundle
 import android.view.*
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentPagerAdapter
+import androidx.fragment.app.FragmentStatePagerAdapter
 import androidx.viewpager.widget.ViewPager
 import com.apelgigit.commons.base.BaseFragment
+import com.apelgigit.commons.ext.clickWithDebounce
+import com.apelgigit.commons.ext.gone
 import com.apelgigit.home.databinding.FragmentHomeBinding
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import java.util.*
 
+interface HomeFragmentDelegate {
+    fun updateToolbarTitle(title: String)
+}
+
 class HomeFragment : BaseFragment<HomeViewModel>(HomeViewModel::class),
     ViewPager.OnPageChangeListener,
-    BottomNavigationView.OnNavigationItemSelectedListener {
+    BottomNavigationView.OnNavigationItemSelectedListener, HomeFragmentDelegate {
 
     private val backStack = Stack<Int>()
 
     private val fragments = listOf(
-        WatchListFragment(),
-        WatchListVolumeFragment()
+        WatchListFragment(delegate = this),
+        WatchListVolumeFragment(delegate = this)
     )
 
     private lateinit var binding: FragmentHomeBinding
@@ -37,6 +43,11 @@ class HomeFragment : BaseFragment<HomeViewModel>(HomeViewModel::class),
         binding.nsvpContent.adapter = ViewPagerAdapter()
         binding.nsvpContent.offscreenPageLimit = fragments.size
         binding.navigation.setOnNavigationItemSelectedListener(this)
+        binding.layoutAppBar.leftButton.gone()
+        binding.layoutAppBar.rightButton.clickWithDebounce {
+            viewModel.setIsLogin()
+            navigationController.navigate(HomeFragmentDirections.actionHomeFragmentToLogin())
+        }
 
         if (backStack.empty()) backStack.push(0)
     }
@@ -67,11 +78,15 @@ class HomeFragment : BaseFragment<HomeViewModel>(HomeViewModel::class),
 
 
     inner class ViewPagerAdapter :
-        FragmentPagerAdapter(childFragmentManager, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT) {
+        FragmentStatePagerAdapter(childFragmentManager, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT) {
 
         override fun getItem(position: Int): Fragment = fragments[position]
 
         override fun getCount(): Int = fragments.size
 
+    }
+
+    override fun updateToolbarTitle(title: String) {
+        binding.layoutAppBar.toolbarTitle.text = title
     }
 }

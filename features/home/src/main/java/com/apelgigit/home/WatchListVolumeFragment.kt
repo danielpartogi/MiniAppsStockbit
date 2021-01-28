@@ -9,13 +9,14 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DividerItemDecoration
 import com.apelgigit.adapter.CryptoWatchListAdapter
 import com.apelgigit.commons.base.BaseFragment
-import com.apelgigit.commons.ext.observeValue
-import com.apelgigit.home.databinding.FragmentWatchListPriceBinding
+import com.apelgigit.commons.utils.observeValue
+import com.apelgigit.home.databinding.FragmentWatchListVolumeBinding
 import com.apelgigit.listener.CryptoListener
 
-class WatchListVolumeFragment: BaseFragment<WatchListVolumeViewModel>(WatchListVolumeViewModel::class) {
+class WatchListVolumeFragment(private val delegate: HomeFragmentDelegate):
+    BaseFragment<WatchListVolumeViewModel>(WatchListVolumeViewModel::class) {
 
-    private lateinit var binding: FragmentWatchListPriceBinding
+    private lateinit var binding: FragmentWatchListVolumeBinding
     private lateinit var adapter: CryptoWatchListAdapter
 
     override fun onCreateView(
@@ -23,12 +24,11 @@ class WatchListVolumeFragment: BaseFragment<WatchListVolumeViewModel>(WatchListV
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = FragmentWatchListPriceBinding.inflate(inflater, container, false)
+        binding = FragmentWatchListVolumeBinding.inflate(inflater, container, false)
         return binding.root
     }
 
     override fun onCreated(view: View) {
-
         observeValue(viewModel.cryptoSubsData){
 
             adapter.submitList(it)
@@ -58,17 +58,22 @@ class WatchListVolumeFragment: BaseFragment<WatchListVolumeViewModel>(WatchListV
 
     private fun showAlertAddCrypto(symbol: String) {
         val dialog = AlertDialog.Builder(requireContext())
-            .setTitle("Watch Crypto Volume")
-            .setMessage("Apakah anda yakin untuk stream volume $symbol?")
-            .setPositiveButton("OK") { _, _ ->
+            .setTitle(getString(R.string.watch_crypto_volume))
+            .setMessage(getString(R.string.question_delete_volume, symbol))
+            .setPositiveButton(getString(R.string.OK)) { _, _ ->
                 viewModel.deleteWatchList(symbol)
             }
-            .setNegativeButton("Cancel") { dialog, _ ->
+            .setNegativeButton(getString(R.string.Cancel)) { dialog, _ ->
                 dialog.dismiss()
             }
             .create()
 
         dialog.show()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        delegate.updateToolbarTitle(getString(R.string.watch_crypto_volume))
     }
 
 }

@@ -1,4 +1,4 @@
-package com.apelgigit.commons.ext
+package com.apelgigit.commons.utils
 
 /**
  * Used as a wrapper for data that is exposed via a LiveData that represents an event.

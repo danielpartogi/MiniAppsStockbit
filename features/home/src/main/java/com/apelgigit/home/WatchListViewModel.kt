@@ -4,8 +4,8 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.apelgigit.commons.base.BaseViewModel
-import com.apelgigit.commons.ext.Resource
-import com.apelgigit.commons.thread.DispatcherProvider
+import com.apelgigit.commons.utils.DispatcherProvider
+import com.apelgigit.commons.utils.Resource
 import com.apelgigit.data.model.Crypto
 import com.apelgigit.data.model.request.CryptoRequest
 import com.apelgigit.domain.CryptoUseCase
@@ -13,7 +13,7 @@ import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
 class WatchListViewModel(dispatcherProvider: DispatcherProvider,
-                    private val useCase: CryptoUseCase
+                         private val useCase: CryptoUseCase
 ): BaseViewModel(dispatcherProvider) {
 
     private val _cryptoDataList: MutableLiveData<Resource<List<Crypto>>> =
@@ -47,9 +47,5 @@ class WatchListViewModel(dispatcherProvider: DispatcherProvider,
 
     fun setWatchList(symbol: String) = viewModelScope.launch {
         useCase.setWatchedCrypto(symbol)
-    }
-
-    fun deleteWatchList(symbol: String) = viewModelScope.launch {
-        useCase.deleteWatchedCrypto(symbol)
     }
 }

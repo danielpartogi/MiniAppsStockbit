@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<com.google.android.material.appbar.AppBarLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<com.google.android.material.appbar.AppBarLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/appBarLayout"
     android:layout_width="match_parent"
@@ -22,16 +21,39 @@
         app:titleTextColor="@color/black">
 
 
+        <TextView
+            style="@style/Title.Bold"
+            android:id="@+id/toolbar_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center" />
+
+
         <ImageButton
-            android:id="@+id/back_button"
+            android:id="@+id/left_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/horizontal_margin_medium"
-            android:background="@null"
+            android:background="?android:attr/selectableItemBackground"
             android:contentDescription="@string/back_button"
             android:drawablePadding="0dp"
             android:gravity="center_vertical"
             android:src="@drawable/ic_back_arrow" />
+
+
+
+        <ImageButton
+            android:id="@+id/right_button"
+            android:layout_width="32dp"
+            android:scaleType="centerInside"
+            android:layout_height="32dp"
+            android:layout_marginEnd="@dimen/horizontal_margin_medium"
+            android:background="?android:attr/selectableItemBackground"
+            android:contentDescription="@string/back_button"
+            android:drawablePadding="0dp"
+            android:gravity="center_vertical"
+            android:layout_gravity="end"
+            android:src="@drawable/ic_logout" />
 
     </com.google.android.material.appbar.MaterialToolbar>
 

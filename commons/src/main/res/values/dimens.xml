@@ -2,6 +2,7 @@
 <resources>
     <dimen name="horizontal_margin_medium">16dp</dimen>
     <dimen name="vertical_margin_medium">16dp</dimen>
+    <dimen name="vertical_margin_big">24dp</dimen>
     <dimen name="horizontal_margin_small">8dp</dimen>
     <dimen name="vertical_margin_small">8dp</dimen>
     <dimen name="dimen_0">0dp</dimen>

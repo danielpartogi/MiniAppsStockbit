@@ -4,10 +4,10 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModel
-import com.apelgigit.commons.ext.Event
-import com.apelgigit.commons.ext.RequestStatus
-import com.apelgigit.commons.ext.Resource
-import com.apelgigit.commons.thread.DispatcherProvider
+import com.apelgigit.commons.utils.Event
+import com.apelgigit.commons.utils.DispatcherProvider
+import com.apelgigit.commons.utils.RequestStatus
+import com.apelgigit.commons.utils.Resource
 import kotlinx.coroutines.*
 import kotlin.coroutines.CoroutineContext
 

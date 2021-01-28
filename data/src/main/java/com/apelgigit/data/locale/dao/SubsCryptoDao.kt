@@ -10,6 +10,9 @@ interface SubsCryptoDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insert(response: CryptoWSResponse)
 
+    @Update(onConflict = OnConflictStrategy.REPLACE)
+    fun update(response: CryptoWSResponse)
+
     @Query("SELECT * FROM crypto_subs ORDER BY symbol")
     fun getAll(): Flow<List<CryptoWSResponse>>
 

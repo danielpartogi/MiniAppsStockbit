@@ -1,4 +1,4 @@
-package com.apelgigit.commons.ext
+package com.apelgigit.commons.utils
 
 data class Resource<out T>(val requestStatus: RequestStatus, val data: T?, val message: String?) {
     companion object {

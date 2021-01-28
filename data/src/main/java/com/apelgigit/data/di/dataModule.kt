@@ -1,11 +1,13 @@
 package com.apelgigit.data.di
 
 import androidx.room.Room
-import com.apelgigit.commons.constants.APIConstants.TIMEOUT
+import com.apelgigit.commons.constants.Constants.TIMEOUT
 import com.apelgigit.data.locale.AppDatabase
 import com.apelgigit.data.remote.services.CryptoService
 import com.apelgigit.data.repository.CryptoRepository
 import com.apelgigit.data.repository.CryptoRepositoryImpl
+import com.apelgigit.data.repository.PreferenceRepository
+import com.apelgigit.data.repository.PreferenceRepositoryImpl
 import com.apelgigit.data.websocket.ApiKeyInterceptor
 import com.apelgigit.data.websocket.FlowStreamAdapter
 import com.apelgigit.data.websocket.services.CryptoWSService
@@ -90,6 +92,7 @@ fun createOkHttpClient(interceptor: ApiKeyInterceptor): OkHttpClient = OkHttpCli
 
 val repositoryModule = module {
     factory { CryptoRepositoryImpl(get(), get(), get()) as CryptoRepository }
+    factory { PreferenceRepositoryImpl(get()) as PreferenceRepository }
 }
 
 val localModule = module {

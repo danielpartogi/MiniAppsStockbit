@@ -25,7 +25,7 @@ object Versions {
     const val gson = "2.8.5"
     const val okHttp = "3.12.1"
     const val retrofit = "2.7.1"
-    const val scarlet = "0.1.10"
+    const val scarlet = "0.1.11"
     const val swipeRefresh = "1.1.0"
 }
 

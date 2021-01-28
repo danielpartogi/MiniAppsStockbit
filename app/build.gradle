@@ -37,6 +37,11 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
+
+    packagingOptions {
+        pickFirst("META-INF/scarlet-core.kotlin_module")
+        pickFirst("META-INF/scarlet-core-internal.kotlin_module")
+    }
 }
 
 dependencies {

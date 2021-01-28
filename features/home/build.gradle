@@ -3,5 +3,4 @@ import dependencies.Modules
 apply from: "$rootDir/features/build.gradle"
 
 dependencies {
-    implementation project(Modules.commons)
 }

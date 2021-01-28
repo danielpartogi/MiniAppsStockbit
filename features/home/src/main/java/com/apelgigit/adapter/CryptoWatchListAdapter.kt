@@ -4,12 +4,17 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
+import androidx.recyclerview.widget.RecyclerView
 import com.apelgigit.data.model.Crypto
 import com.apelgigit.data.websocket.response.CryptoWSResponse
 import com.apelgigit.home.databinding.ItemCryptoBinding
+import com.apelgigit.listener.CryptoListener
 
 class CryptoWatchListAdapter(
+   private val listener: CryptoListener
 ) : ListAdapter<CryptoWSResponse, CryptoWatchListViewHolder>(CryptoWSItemDiffCallback()) {
+
+
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CryptoWatchListViewHolder {
         val binding =
@@ -19,6 +24,10 @@ class CryptoWatchListAdapter(
 
     override fun onBindViewHolder(holder: CryptoWatchListViewHolder, position: Int) {
         holder.bind(getItem(position))
+        holder.itemView.setOnLongClickListener {
+            listener.onClickCryptoList(getItem(position).symbol)
+            true
+        }
     }
 
     class CryptoWSItemDiffCallback : DiffUtil.ItemCallback<CryptoWSResponse>() {
@@ -30,4 +39,6 @@ class CryptoWatchListAdapter(
             return oldItem == newItem
         }
     }
+
+
 }

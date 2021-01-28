@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/home_main"
+        android:icon="@drawable/selector_star_filled_not_filled"
+        android:title="@string/watchlist" />
+
+    <item
+        android:id="@+id/home_watch_list_volume"
+        android:icon="@drawable/ic_market"
+
+        android:title="@string/watch_list_real_time" />
+
+
+</menu>

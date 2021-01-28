@@ -26,6 +26,7 @@ object Versions {
     const val okHttp = "3.12.1"
     const val retrofit = "2.7.1"
     const val scarlet = "0.1.10"
+    const val swipeRefresh = "1.1.0"
 }
 
 object Modules {
@@ -70,6 +71,7 @@ object Libs {
         const val appcompat = "androidx.appcompat:appcompat:${Versions.appcompat}"
         const val constrainLayout = "androidx.constraintlayout:constraintlayout:${Versions.constrainLayout}"
         const val multidex = "androidx.multidex:multidex:${Versions.multidex}"
+        const val swipeRefresh = "androidx.swiperefreshlayout:swiperefreshlayout:${Versions.swipeRefresh}"
 
         // LIFECYCLE
         const val livedata = "androidx.lifecycle:lifecycle-livedata-ktx:${Versions.lifecycle}"

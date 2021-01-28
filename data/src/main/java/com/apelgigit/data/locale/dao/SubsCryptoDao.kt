@@ -1,9 +1,6 @@
 package com.apelgigit.data.locale.dao
 
-import androidx.room.Dao
-import androidx.room.Insert
-import androidx.room.OnConflictStrategy
-import androidx.room.Query
+import androidx.room.*
 import com.apelgigit.data.websocket.response.CryptoWSResponse
 import kotlinx.coroutines.flow.Flow
 
@@ -11,8 +8,11 @@ import kotlinx.coroutines.flow.Flow
 interface SubsCryptoDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insert(otpExpired: CryptoWSResponse)
+    fun insert(response: CryptoWSResponse)
 
-    @Query("SELECT * FROM crypto_subs")
+    @Query("SELECT * FROM crypto_subs ORDER BY symbol")
     fun getAll(): Flow<List<CryptoWSResponse>>
+
+    @Query("DELETE FROM crypto_subs WHERE symbol == :symbol")
+    fun remove(symbol: String)
 }

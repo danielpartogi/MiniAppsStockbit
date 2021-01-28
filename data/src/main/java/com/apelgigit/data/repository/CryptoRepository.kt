@@ -11,8 +11,10 @@ import com.apelgigit.data.websocket.Subscribe
 import com.apelgigit.data.websocket.response.CryptoWSResponse
 import com.apelgigit.data.websocket.services.CryptoWSService
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.withContext
@@ -22,6 +24,8 @@ interface CryptoRepository {
     fun getCryptoList(cryptoRequest: CryptoRequest): Flow<Resource<List<Crypto>>>
     fun getWSCrypto(subscribe: Subscribe): Flow<CryptoWSResponse>
     fun getAllSubsCrypto(): Flow<List<CryptoWSResponse>>
+    suspend fun setSubsCrypto(symbol: String)
+    suspend fun deleteSubsCrypto(symbol: String)
 }
 
 class CryptoRepositoryImpl(
@@ -30,32 +34,49 @@ class CryptoRepositoryImpl(
    private val dao: SubsCryptoDao
 ): CryptoRepository {
 
+    @ExperimentalCoroutinesApi
     override fun getCryptoList(cryptoRequest: CryptoRequest): Flow<Resource<List<Crypto>>> {
         return flow {
+            emit(Resource(RequestStatus.LOADING, listOf(), ""))
             val response = service.getCryptoData(cryptoRequest.limit, cryptoRequest.pageNum, cryptoRequest.tsym)
 
             emit(Resource(RequestStatus.SUCCESS, response.data, ""))
+        }.catch {
+            emit(Resource.error(it.message ?: "Error", null))
         }
     }
 
+    @ExperimentalCoroutinesApi
     override fun getWSCrypto(subscribe: Subscribe): Flow<CryptoWSResponse> {
         return flow {
             ws.subscribe(subscribe)
             ws.observeResponse().collect { response ->
-                Log.d("response:ws", response.toString())
                 withContext(Dispatchers.IO) {
-                    if (response.symbol != "")
+                    if (response.symbol.isNotEmpty())
                         dao.insert(response)
                 }
                 emit(response)
             }
-
+        }.catch {
+            Log.e("unhandled_error", it.message.toString())
         }
     }
 
 
     override fun getAllSubsCrypto(): Flow<List<CryptoWSResponse>> {
         return dao.getAll()
+    }
+
+    override suspend fun setSubsCrypto(symbol: String) {
+        withContext(Dispatchers.IO){
+           dao.insert(CryptoWSResponse(21, symbol, 0.0))
+        }
+    }
+
+    override suspend fun deleteSubsCrypto(symbol: String) {
+        withContext(Dispatchers.IO){
+            dao.remove(symbol)
+        }
     }
 
 }

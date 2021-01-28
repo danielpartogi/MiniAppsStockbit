@@ -23,4 +23,12 @@ class CryptoUseCase(private val repository: CryptoRepository) {
     fun getAllCryptoSubs() : Flow<List<CryptoWSResponse>> {
         return repository.getAllSubsCrypto()
     }
+
+    suspend fun setWatchedCrypto(symbol: String) {
+        repository.setSubsCrypto(symbol)
+    }
+
+    suspend fun deleteWatchedCrypto(symbol: String){
+        repository.deleteSubsCrypto(symbol)
+    }
 }

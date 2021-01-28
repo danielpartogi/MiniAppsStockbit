@@ -10,7 +10,7 @@ import com.apelgigit.data.websocket.response.CryptoWSResponse
     entities = [
         CryptoWSResponse::class
     ],
-    version = 2,
+    version = 1,
     exportSchema = false
 )
 abstract class AppDatabase : RoomDatabase() {

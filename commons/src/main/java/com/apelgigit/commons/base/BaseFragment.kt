@@ -16,6 +16,7 @@ abstract class BaseFragment<VM : BaseViewModel>(clazz: KClass<VM>) : Fragment() 
 
     protected lateinit var connectionLiveData: ConnectionLiveData
     protected lateinit var navigationController: NavController
+    var isNetworkAvailable: Boolean = false
 
     /**
      * The viewModel acts upon the model and the view.
@@ -40,6 +41,7 @@ abstract class BaseFragment<VM : BaseViewModel>(clazz: KClass<VM>) : Fragment() 
             viewModel.isNetworkAvailable.value = it
         })
         viewModel.isNetworkAvailable.observe(this.viewLifecycleOwner, {
+            isNetworkAvailable = it
             if (!it) showSnackbar(getString(R.string.error_network_not_available), Snackbar.LENGTH_LONG)
         })
     }

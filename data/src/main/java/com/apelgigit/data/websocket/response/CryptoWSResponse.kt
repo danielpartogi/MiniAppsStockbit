@@ -13,4 +13,6 @@ data class CryptoWSResponse(
     val symbol: String = "",
     @SerializedName("TOPTIERFULLVOLUME")
     val topTierFullVolume: Double = 0.0
+
+
 )

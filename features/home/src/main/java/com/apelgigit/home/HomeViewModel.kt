@@ -9,6 +9,7 @@ import com.apelgigit.data.model.request.CryptoRequest
 import com.apelgigit.data.websocket.Subscribe
 import com.apelgigit.data.websocket.response.CryptoWSResponse
 import com.apelgigit.domain.CryptoUseCase
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
@@ -17,8 +18,21 @@ class HomeViewModel(dispatcherProvider: DispatcherProvider,
                     private val useCase: CryptoUseCase
 ): BaseViewModel(dispatcherProvider) {
 
-    val foo = useCase.getAllCryptoSubs().asLiveData()
+    val cryptoSubsData = useCase.getAllCryptoSubs().asLiveData()
+    var observeValue: MutableLiveData<List<String>> = MutableLiveData()
 
-    val test = useCase.getWSCryptoData(Subscribe("SubAdd", listOf("21~BTC"))).asLiveData()
+    var rawWsData = observeValue.switchMap {
+        useCase.getWSCryptoData(Subscribe("SubAdd", it)).asLiveData()
+    }
+
+    fun observeCryptoWs() = viewModelScope.launch {
+        delay(1000)
+        observeValue.value = listOf("21~BTC")
+    }
+
+    fun testAgain() = viewModelScope.launch {
+        delay(5000)
+        observeValue.value = listOf("21~BTC", "21~ETH")
+    }
 
 }

@@ -14,14 +14,15 @@ import java.text.DecimalFormat
 class CryptoListViewHolder(private val binding: ItemCryptoBinding) :
     RecyclerView.ViewHolder(binding.root) {
     fun bind(cryptoModel: Crypto) {
+        val coinInfo = cryptoModel.coinInfo
+        val rawData = cryptoModel.raw.rawDetail
         with(binding) {
-            tvCode.text = cryptoModel.coinInfo.name
-            tvCompanyName.text = cryptoModel.coinInfo.fullName
-            tvPriceChange.changeTextColor(cryptoModel.raw.rawDetail.change24Hour, itemView.context)
+            tvCode.text = coinInfo.name
+            tvCompanyName.text = coinInfo.fullName
+            tvPriceChange.changeTextColor(rawData.change24Hour, itemView.context)
             tvPrice.text = cryptoModel.display.displayDetail.price
-            val changePercentage =
-                cryptoModel.raw.rawDetail.changePCT24Hour.roundDecimal(2).addPrefix()
-            val changePrice = cryptoModel.raw.rawDetail.change24Hour.roundDecimal(2).addPrefix()
+            val changePercentage = rawData.changePCT24Hour.roundDecimal(2).addPrefix()
+            val changePrice = rawData.change24Hour.roundDecimal(2).addPrefix()
 
             tvPriceChange.text =
                 itemView.context.getString(R.string.price_change, changePrice, changePercentage)

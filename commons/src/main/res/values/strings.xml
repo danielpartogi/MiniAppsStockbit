@@ -14,4 +14,7 @@
     <string name="title_enter">Masuk</string>
     <string name="email_not_valid">Username atau Email Tidak Valid</string>
     <string name="password_not_valid">Password Harus lebih dari %1$d</string>
+    <string name="watchlist">WatchList</string>
+    <string name="watch_list_real_time">Watch List Real Time</string>
+
 </resources>

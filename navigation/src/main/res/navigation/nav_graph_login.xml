@@ -11,7 +11,10 @@
         <action android:id="@+id/action_login_fragment_to_crypto_list"
             app:destination="@id/nav_graph_crypto_watch_list"
             app:enterAnim="@anim/fragment_open_enter"
-            app:popExitAnim="@anim/fragment_close_exit">
+            app:popExitAnim="@anim/fragment_close_exit"
+            app:popUpTo="@id/loginFragment"
+            app:popUpToInclusive="true"
+            >
         </action>
     </fragment>
 

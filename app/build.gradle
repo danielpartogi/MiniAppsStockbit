@@ -17,6 +17,10 @@ android {
         versionCode Config.versionCode
         versionName Config.versionName
         multiDexEnabled true
+
+        buildConfigField 'String', 'BASE_URL', ConfigURL.BASE_URL
+        buildConfigField 'String', 'BASE_URL_WS', ConfigURL.BASE_URL_WS
+        buildConfigField 'String', 'COMPARE_CRYPTO_KEY', ConfigURL.COMPARE_CRYPTO_KEY
     }
 
     buildFeatures {

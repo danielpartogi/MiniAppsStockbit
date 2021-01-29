@@ -1,5 +1,11 @@
 package dependencies
 
+object ConfigURL {
+    const val BASE_URL = "\"https://min-api.cryptocompare.com/\""
+    const val BASE_URL_WS = "\"wss://streamer.cryptocompare.com/v2\""
+    const val COMPARE_CRYPTO_KEY = "\"d69fdf30a2a97761fadddac9ad9d92127a4ddc823493d56f12f816070150bd05\""
+}
+
 object Versions {
     const val kotlin = "1.4.21"
     const val coreKtx = "1.3.2"

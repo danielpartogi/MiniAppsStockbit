@@ -8,6 +8,7 @@ import com.apelgigit.data.di.webSocketModule
 import com.apelgigit.di.homeModules
 import com.apelgigit.domain.di.moduleUseCase
 import com.apelgigit.login.di.featureAuthModule
+import com.apelgigit.miniappsstockbit.BuildConfig.*
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import org.koin.core.module.Module
 
@@ -19,6 +20,6 @@ val appComponent: List<Module> = listOf(
     featureAuthModule,
     commonModules,
     homeModules,
-    remoteModule("https://min-api.cryptocompare.com/"),
-    webSocketModule("wss://streamer.cryptocompare.com/v2", "d69fdf30a2a97761fadddac9ad9d92127a4ddc823493d56f12f816070150bd05")
+    remoteModule(BASE_URL),
+    webSocketModule(BASE_URL_WS, COMPARE_CRYPTO_KEY)
 )
